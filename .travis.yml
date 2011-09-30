@@ -1,5 +1,10 @@
 rvm:
   - 1.8.7
   - 1.9.2
-  - ree
+  - 1.9.3
   - ruby-head
+  - ree
+  - jruby
+  # Uncomment when I'll be able to bundle install properly locally
+  #- rbx
+  #- rbx-2.0
