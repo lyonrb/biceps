@@ -1,18 +1,18 @@
 # Biceps
 
-Easily route your rails-based versionned API
+Easily route your rails-based versioned API
 [![Travis](https://secure.travis-ci.org/evome/biceps.png)](http://travis-ci.org/evome/biceps)
 
 ## Installation
 
-Biceps heavily uses the convention over configuration principle.  
+Biceps heavily uses the convention over configuration principle.
 To install it, you just need to add it to your Gemfile.
 
     gem 'biceps'
 
 ## Defining routes
 
-Once Biceps is installed, you can start adding api-versionned routes.  
+Once Biceps is installed, you can start adding api-versioned routes.
 Your `config/routes.rb` file could look like the following :
 
     MyApp:Application.routes.draw do
