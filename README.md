@@ -74,6 +74,7 @@ $.ajax({
 }).always(function(response) {
   json = JSON.parse(response.responseText)
 });
+```
 
 
 ## Contributing
