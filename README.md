@@ -16,17 +16,17 @@ Once Biceps is installed, you can start adding api-versioned routes.
 Your `config/routes.rb` file could look like the following :
 
 ```ruby
-    MyApp:Application.routes.draw do
-      root :to => "home#index"
+MyApp::Application.routes.draw do
+  root :to => "home#index"
 
-      api_version(1) do
-        get '/me' => "users#show"
-      end
+  api_version(1) do
+    get '/me' => "users#show"
+  end
 
-      api_version(2) do
-        get '/user' => "users#show"
-      end
-    end
+  api_version(2) do
+    get '/user' => "users#show"
+  end
+end
 ```
 
 This will create two routes :
@@ -51,28 +51,29 @@ When my_app is your application's name (based on the module name at
 Here is, for example, how you could do it with [faraday](https://github.com/technoweenie/faraday)
 
 ```ruby
-    connexion = Faraday.new(:url => 'http://api.yourapplication')
-    connexion.get do |req|
-      req.url '/me'
-      req.headers['HTTP_ACCEPT'] = 'application/json, application/vnd.my_app;ver=1'
-      req.params['access_token'] = 'xxx'
-    end
+connexion = Faraday.new(:url => 'http://api.yourapplication')
+connexion.get do |req|
+  req.url '/me'
+  req.headers['HTTP_ACCEPT'] = 'application/json, application/vnd.my_app;ver=1'
+  req.params['access_token'] = 'xxx'
+end
 ```
 
 Or, with jQuery, we do it like this :
 
-    $.ajaxSetup({
-      accepts: {
-        my_app: "application/json,application/vnd.my_app;ver=1"
-      }
-    });
+```javascript
+$.ajaxSetup({
+  accepts: {
+    my_app: "application/json,application/vnd.my_app;ver=1"
+  }
+});
 
-    $.ajax({
-      url: '/me'
-      dataType: 'my_app'
-    }).always(function(response) {
-      json = JSON.parse(response.responseText)
-    });
+$.ajax({
+  url: '/me'
+  dataType: 'my_app'
+}).always(function(response) {
+  json = JSON.parse(response.responseText)
+});
 
 
 ## Contributing
