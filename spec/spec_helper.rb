@@ -6,6 +6,7 @@ require 'minitest/spec'
 
 require 'action_dispatch/railtie'
 
+$:<< 'lib'
 require 'biceps'
 
 # Load support files
