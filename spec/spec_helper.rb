@@ -1,6 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
 
-require 'rails/all'
+require 'action_controller/railtie'
 require 'rspec'
 require 'biceps'
 
