@@ -1,3 +1,4 @@
+require 'action_controller'
 #
 # Monkey Patching routes to add the `api_version` method
 # This allows us to define both the namespace and the constraint all together
