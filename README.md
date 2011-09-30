@@ -90,4 +90,4 @@ We're open to any contribution. It has to be tested properly though.
 * Damien MATHIEU ([github/dmathieu](http://github.com/dmathieu), [dmathieu.com](http://dmathieu.com))
 
 ## License
-MIT License. Copyright 2010 Evome. http://evome.fr
+MIT License. Copyright 2011 Evome. http://evome.fr
