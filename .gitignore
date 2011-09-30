@@ -3,3 +3,4 @@ log/*.log
 pkg/
 tmp/*
 *.rbc
+Gemfile.lock
