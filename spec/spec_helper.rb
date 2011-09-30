@@ -1,7 +1,11 @@
 ENV["RAILS_ENV"] ||= 'test'
 
-require 'action_controller/railtie'
-require 'rspec'
+gem 'minitest'
+require 'minitest/autorun'
+require 'minitest/spec'
+
+require 'action_dispatch/railtie'
+
 require 'biceps'
 
 # Load support files

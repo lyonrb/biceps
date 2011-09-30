@@ -1,36 +1,45 @@
 require 'spec_helper'
 require 'action_controller/test_case'
 
+ACTR = ActionController::TestRequest
+
 describe Biceps::ApiVersion do
-  let(:object) { Biceps::ApiVersion }
+  before do
+    @object = Biceps::ApiVersion
+  end
 
   describe "without any appropriate Accept header" do
-    let(:request) { ActionController::TestRequest.new({'HTTP_ACCEPT' => 'text/javascript'})}
+    before do
+      @request =  ACTR.new({'HTTP_ACCEPT' => 'text/javascript'})
+    end
+
     it "should never match" do
-      object.new(1).matches?(request).should be_false
+      refute @object.new(1).matches?(@request)
     end
   end
 
   describe "with an appropriate Accept header" do
-    let(:request) { ActionController::TestRequest.new({'HTTP_ACCEPT' => 'application/json, application/vnd.biceps;ver=1'})}
-
+    before do
+      @request = ACTR.new({'HTTP_ACCEPT' => 'application/json, application/vnd.biceps;ver=1'})
+    end
 
     it "should match v1" do
-      object.new(1).matches?(request).should be_true
+      assert @object.new(1).matches?(@request)
     end
 
     it "should not match v2" do
-      object.new(2).matches?(request).should be_false
+      refute @object.new(2).matches?(@request)
     end
   end
 
   describe "with an inappropriate application name" do
     # Even Chuck Norris can't access the api if the application name is inappropriate
-    let(:request) { ActionController::TestRequest.new('HTTP_ACCEPT' => 'application/json, application/vnd.chucknorris;ver=1')}
+    before do
+      @request = ACTR.new('HTTP_ACCEPT' => 'application/json, application/vnd.chucknorris;ver=1')
+    end
 
     it "should never match" do
-      object.new(1).matches?(request).should be_false
+      refute @object.new(1).matches?(@request)
     end
   end
 end
-
