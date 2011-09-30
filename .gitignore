@@ -1,0 +1,5 @@
+.bundle/
+log/*.log
+pkg/
+tmp/*
+*.rbc
