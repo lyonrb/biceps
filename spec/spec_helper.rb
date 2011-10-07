@@ -4,7 +4,7 @@ gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/spec'
 
-require 'action_dispatch/railtie'
+require 'rails'
 
 $:<< 'lib'
 require 'biceps'
