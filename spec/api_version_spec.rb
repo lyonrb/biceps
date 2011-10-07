@@ -12,6 +12,10 @@ describe Biceps::ApiVersion do
     it "should never match" do
       refute object.new(1).matches?(request)
     end
+
+    it "should not match with an array" do
+      refute object.new([2, 3]).matches?(request)
+    end
   end
 
   describe "with an appropriate Accept header" do
@@ -23,6 +27,14 @@ describe Biceps::ApiVersion do
 
     it "should not match v2" do
       refute object.new(2).matches?(request)
+    end
+
+    it "should match an array of 1, 2" do
+      assert object.new([1, 2]).matches?(request)
+    end
+
+    it "should not match an array of 2, 3" do
+      refute object.new([2, 3]).matches?(request)
     end
   end
 

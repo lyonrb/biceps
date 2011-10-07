@@ -3,7 +3,7 @@ module Biceps
     attr_accessor :version, :accept
 
     def initialize(version)
-      @version = version
+      @version = [version].flatten
     end
 
     def matches?(request)
@@ -14,7 +14,7 @@ module Biceps
 
     private
     def valid_api_version?
-      request_version == version
+      version.include?(request_version)
     end
 
     def request_version
