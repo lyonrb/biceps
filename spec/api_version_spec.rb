@@ -16,6 +16,10 @@ describe Biceps::ApiVersion do
     it "should not match with an array" do
       refute object.new([2, 3]).matches?(request)
     end
+
+    it "should match if the version nil is specified" do
+      assert object.new([1, nil]).matches?(request)
+    end
   end
 
   describe "with an appropriate Accept header" do
