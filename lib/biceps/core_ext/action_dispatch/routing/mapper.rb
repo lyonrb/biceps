@@ -6,9 +6,14 @@ require 'action_controller'
 module ActionDispatch::Routing
   class Mapper
 
-    def api_version(version)
+    def api_version(version, opts={})
+      if opts[:module] && opts[:module].empty?
+        scope_module = nil
+      else
+        scope_module = opts[:module] || "v#{version}"
+      end
 
-      scope :module => "v#{version}" do
+      scope :module => scope_module do
         constraints Biceps::ApiVersion.new(version) do
           yield if block_given?
         end
