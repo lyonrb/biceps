@@ -17,7 +17,7 @@ describe Biceps::ModelVersioning do
 
   describe "without any api version" do
     it "should render using the normal behavior" do
-      assert_equal responder(resource).send(:api_behavior, nil),
+      assert_equal Array(responder(resource).send(:api_behavior, nil)),
         [{:test => true}.to_json]
     end
   end
@@ -27,7 +27,7 @@ describe Biceps::ModelVersioning do
       responder = responder(resource)
       responder.request.env['HTTP_ACCEPT'] = 'application/vnd.biceps;ver=1'
 
-      assert_equal responder.send(:api_behavior, nil),
+      assert_equal Array(responder.send(:api_behavior, nil)),
         [{:new_test => true}.to_json]
     end
 
@@ -35,7 +35,7 @@ describe Biceps::ModelVersioning do
       responder = responder(resource)
       responder.request.env['HTTP_ACCEPT'] = 'application/vnd.biceps;ver=2'
 
-      assert_equal responder.send(:api_behavior, nil),
+      assert_equal Array(responder.send(:api_behavior, nil)),
         [{:test => true}.to_json]
     end
   end
