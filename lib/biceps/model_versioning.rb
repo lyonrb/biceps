@@ -23,14 +23,8 @@ module Biceps
         end
 
         private
-        # TODO : refactor the routing constraint so we don't repeat the
-        #regex in two different places
         def api_version
-          app_name = Rails.application.class.to_s.split('::').first.underscore
-          regex = Regexp.new("application/vnd.#{app_name};ver=([0-9]+)")
-
-          match = request.accept.match(regex) if request.accept
-          match[1].to_i if match
+          Biceps::Parser.new(request).version
         end
       end
     end
