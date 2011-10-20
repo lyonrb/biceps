@@ -1,4 +1,5 @@
 require 'biceps/core_ext/action_dispatch/routing/mapper'
+require 'biceps/core_ext/action_controller/base'
 
 module Biceps
   autoload :ApiVersion,      'biceps/api_version'
