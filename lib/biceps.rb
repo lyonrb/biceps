@@ -6,4 +6,5 @@ module Biceps
   autoload :Jsonp,           'biceps/jsonp'
   autoload :Serializer,      'biceps/serializer'
   autoload :Parser,          'biceps/parser'
+  autoload :Builder,         'biceps/builder'
 end
