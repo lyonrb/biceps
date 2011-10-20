@@ -40,6 +40,16 @@ describe Biceps::ModelVersioning do
     end
   end
 
+  describe "with a builder object" do
+    it "should return the resource's hash" do
+      responder = responder(Biceps::Builder::Base.new(resource, {}))
+      responder.request.env['HTTP_ACCEPT'] = 'application/vnd.biceps;ver=1'
+
+      assert_equal Array(responder.send(:api_behavior, nil)),
+        [{:new_test => true}.to_json]
+    end
+  end
+
   def responder(resources, accept=nil)
     Biceps::TestResponder.new(
       Biceps::TestResponderController.new,

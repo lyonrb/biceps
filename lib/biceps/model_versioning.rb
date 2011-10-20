@@ -9,7 +9,12 @@ module Biceps
         def api_behavior(error)
           if api_version
             begin
-              constant = "Serializers::#{resource.class}::V#{api_version}".constantize
+              if resource.is_a?(Biceps::Builder::Base)
+                constant = "Serializers::#{resource.resource.class}::V#{api_version}".constantize
+              else
+                constant = "Serializers::#{resource.class}::V#{api_version}".constantize
+              end
+
               @resource = constant.new(resource)
             rescue NameError
               #
