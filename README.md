@@ -90,6 +90,7 @@ We're open to any contribution. It has to be tested properly though.
 
 * Evome ([evome.fr](http://evome.fr))
 * Damien MATHIEU ([github/dmathieu](http://github.com/dmathieu), [dmathieu.com](http://dmathieu.com))
+* Franck VERROT ([github.com/cesario](http://github.com/cesario),[verrot.fr](http://verrot.fr/))
 
 ## License
 MIT License. Copyright 2011 Evome. http://evome.fr
