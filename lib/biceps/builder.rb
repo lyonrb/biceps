@@ -5,7 +5,7 @@ module Biceps
     def self.new(resource, params, version)
       begin
         constant = "Builders::#{resource}::V#{version}".constantize
-        instance = constant.new resource.new, params
+        instance = constant.new(resource.new, params).resource
       rescue NameError
         #
         # The builder for that version is not defined
@@ -18,7 +18,6 @@ module Biceps
 
     class Base
       attr_reader :resource, :params
-      delegate    :respond_to?, :to => :resource
 
       extend ActiveModel::Callbacks
       define_model_callbacks :initialize, :only => :after
@@ -26,14 +25,6 @@ module Biceps
       def initialize(resource, params)
         run_callbacks :initialize do
           @resource, @params = resource, params
-        end
-      end
-
-      def method_missing(method, *args, &block)
-        if resource.respond_to?(method)
-          resource.send(method, *args, &block)
-        else
-          super
         end
       end
     end

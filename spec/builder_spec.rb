@@ -20,22 +20,15 @@ describe Biceps::Builder do
 
   describe "new" do
     it "should return the model if there is no api version" do
-      assert_kind_of Hash, Biceps::Builder.new(Hash, {}, nil)
+      assert_equal({}, Biceps::Builder.new(Hash, {}, nil))
     end
 
     it "should return the model if the version does not exists" do
-      assert_kind_of Hash, Biceps::Builder.new(Hash, {}, 42)
+      assert_equal({}, Biceps::Builder.new(Hash, {}, 42))
     end
 
     it "should return the builder" do
-      assert_kind_of Builders::Hash::V1, Biceps::Builder.new(Hash, {}, 1)
-    end
-  end
-
-  describe "callbacks" do
-    it "should execute the after initialize callback" do
-      instance = Biceps::Builder.new(Hash, {}, 1)
-      assert_equal({:test => true}, instance.resource)
+      assert_equal({:test => true}, Biceps::Builder.new(Hash, {}, 1))
     end
   end
 end
