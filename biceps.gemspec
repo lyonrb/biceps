@@ -6,14 +6,13 @@ require 'biceps/version'
 Gem::Specification.new do |s|
   s.name         = "biceps"
   s.version      = Biceps::VERSION
-  s.authors      = ["Damien Mathieu"]
-  s.email        = "42@dmathieu.com"
-  s.homepage     = "https://github.com//biceps"
-  s.summary      = "[summary]"
-  s.description  = "[description]"
+  s.authors      = ["Evome"]
+  s.email        = "dev@evome.fr"
+  s.homepage     = "https://github.com/evome/biceps"
+  s.summary     = "Leverage your api"
+  s.description = "Create a versioned API with rails"
 
   s.files        = `git ls-files app lib`.split("\n")
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
-  s.rubyforge_project = '[none]'
 end
