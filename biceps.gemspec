@@ -15,4 +15,11 @@ Gem::Specification.new do |s|
   s.files        = `git ls-files app lib`.split("\n")
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
+
+  s.add_development_dependency "bundler"
+  s.add_development_dependency "minitest"
+  s.add_development_dependency 'json',  '>= 1.6.1'
+
+  s.add_dependency 'rake',  '>= 0.8.7'
+  s.add_dependency 'rails', '>= 3.0.0'
 end
