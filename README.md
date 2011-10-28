@@ -54,7 +54,7 @@ Here is, for example, how you could do it with [faraday](https://github.com/tech
 connexion = Faraday.new(:url => 'http://api.yourapplication')
 connexion.get do |req|
   req.url '/me'
-  req.headers['HTTP_ACCEPT'] = 'application/json, application/vnd.my_app;ver=1'
+  req.headers['ACCEPT'] = 'application/json, application/vnd.my_app;ver=1'
   req.params['access_token'] = 'xxx'
 end
 ```
