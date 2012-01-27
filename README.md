@@ -76,6 +76,30 @@ $.ajax({
 });
 ```
 
+## Routes Testing
+
+You will want to be able to add routing tests to your versionned API. We provide an helper for that.  
+Include `Biceps::TestHelper` in your routing specs, and use the `mock_api_version` method.
+
+Example :
+
+    require 'spec_helper'
+
+    describe V1::MyApiController do
+      include Biceps::TestHelper
+      mock_api_version(1)
+
+      it "GET index" do
+        get('/my_api').should route_to({:controller => 'v1/my_api', :action => 'index'})
+      end
+    end
+
+### Protip
+You can include this helper in all your routing specs by editing your `spec/spec_helper.rb` file with the following :
+
+    RSpec.configure do |config|
+      config.include Biceps::TestHelper,    :type => :routing
+    end
 
 ## Contributing
 

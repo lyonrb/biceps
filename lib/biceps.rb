@@ -8,4 +8,5 @@ module Biceps
   autoload :Serializer,      'biceps/serializer'
   autoload :Parser,          'biceps/parser'
   autoload :Builder,         'biceps/builder'
+  autoload :TestHelper,      'biceps/test_helper'
 end

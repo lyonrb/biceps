@@ -12,7 +12,11 @@ module Biceps
     end
 
     def version
-      is_api_call?[1].to_i if is_api_call?
+      if Biceps.force_test_version?
+        Biceps.force_test_version
+      else
+        is_api_call?[1].to_i if is_api_call?
+      end
     end
 
     private
