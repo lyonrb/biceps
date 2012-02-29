@@ -50,4 +50,16 @@ describe Biceps::ApiVersion do
       refute object.new(1).matches?(request)
     end
   end
+
+  describe "without any application name" do
+    let(:request) { ACTR.new }
+
+    it "should never match" do
+      refute object.new(1).matches?(request)
+    end
+
+    it "should match nil" do
+      assert object.new(nil).matches?(request)
+    end
+  end
 end

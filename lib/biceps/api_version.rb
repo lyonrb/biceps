@@ -22,7 +22,7 @@ module Biceps
     end
 
     def is_api_call?
-      @is_api_call = accept.match(regex)
+      @is_api_call = accept ? accept.match(regex) : false
     end
 
     def regex
