@@ -8,3 +8,10 @@ rvm:
   # Uncomment when I'll be able to bundle install properly locally
   #- rbx
   #- rbx-2.0
+
+notifications:
+  campfire:
+    on_success: change
+    on_failure: always
+    rooms:
+      - secure: "guBpLxyF7apxce7X/pAq70oPJ0xTQW1vxC9/jGtAGFRGCP/nahwe2O4/MJlu\nYicUPTjmRl1T0pRPqklPbna5p+SSvgpAzEkgweWBYZAOYP13wpBTgC/eji5e\noevkl3bxTr0LsRFJqoC2mfSdym+Yh/OYHSiTdLFEL/Ay68QXPvY="
