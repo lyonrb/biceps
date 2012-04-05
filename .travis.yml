@@ -11,7 +11,7 @@ rvm:
 
 notifications:
   campfire:
-    on_success: change
+    on_success: always
     on_failure: always
     rooms:
-      - secure: "nB9dAoIbRzLMURnlVH+kdt9r72qgUgEFqQzjNe4sUhhmNEdLXurE+XT2PU75\ndToRgVH6eWbak5yyT+l/2eKkx7SZLNGltzpczSeSf3OlFAWi5VXfCZWz6xqa\nU17zya2vKrXCWqFqOPCm15cSOKTiQ+N+ZsDAUQBJB00wdC0SLYo="
+      - secure: aGfydtzTb2+T6s0Out1n9nSZQH2jL8hFHZWXBa3sjqYW+2O8JAlM/Fri8jwV\nzrVKU3pEzbQx4oiuMxfYIRmSqZ6zQ1Kpqb1jDYa0sbbGUN7UskFEZirXp+GB\n7WBxvxn3b1T2tNvtlN7Yfxi4N54Qh2ymT8y0Uzoy6dZbtX8aTIU=
