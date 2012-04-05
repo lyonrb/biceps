@@ -62,4 +62,31 @@ describe Biceps::ApiVersion do
       assert object.new(nil).matches?(request)
     end
   end
+
+  describe "with the test helper" do
+    let(:request) { ACTR.new({'HTTP_ACCEPT' => 'application/json, application/vnd.biceps;ver=1'}) }
+    include Biceps::TestHelper
+
+    describe "with an api version specified" do
+      mock_api_version(42)
+
+      it "should use the overriden api version" do
+        assert object.new(42).matches?(request)
+      end
+
+      it "should not match the original version" do
+        refute object.new(1).matches?(request)
+      end
+    end
+
+    describe "without any api version specified" do
+      it "should not use any overriden api version" do
+        refute object.new(42).matches?(request)
+      end
+
+      it "should match the original version" do
+        assert object.new(1).matches?(request)
+      end
+    end
+  end
 end
