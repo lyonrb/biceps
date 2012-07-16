@@ -1,7 +1,7 @@
 # Biceps
 
 Easily route your rails-based versioned API
-[![Travis](https://secure.travis-ci.org/evome/biceps.png)](http://travis-ci.org/evome/biceps)
+[![Travis](https://secure.travis-ci.org/lyonrb/biceps.png)](http://travis-ci.org/lyonrb/biceps)
 
 ## Installation
 
@@ -108,7 +108,7 @@ We're open to any contribution. It has to be tested properly though.
 * [Fork](http://help.github.com/forking/) the project
 * Do your changes and commit them to your repository
 * Test your changes. We won't accept any untested contributions (except if they're not testable).
-* Create an [issue](https://github.com/evome/biceps/issues) with a link to your commits.
+* Create an [issue](https://github.com/lyonrb/biceps/issues) with a link to your commits.
 
 ## Maintainers
 
@@ -117,4 +117,4 @@ We're open to any contribution. It has to be tested properly though.
 * Franck VERROT ([github.com/cesario](http://github.com/cesario),[verrot.fr](http://verrot.fr/))
 
 ## License
-MIT License. Copyright 2011 Evome. http://evome.fr
+MIT License. Copyright 2011 LyonRB. http://lyonrb.fr
