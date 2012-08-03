@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version      = Biceps::VERSION
   s.authors      = ["Evome"]
   s.email        = "dev@evome.fr"
-  s.homepage     = "https://github.com/evome/biceps"
+  s.homepage     = "https://github.com/lyonrb/biceps"
   s.summary     = "Leverage your api"
   s.description = "Create a versioned API with rails"
 
