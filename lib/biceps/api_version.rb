@@ -4,6 +4,7 @@ module Biceps
 
     def initialize(version)
       @version = [version].flatten
+      @version_matcher = {}
     end
 
     def matches?(request)
@@ -21,12 +22,20 @@ module Biceps
       if Biceps.force_test_version?
         Biceps.force_test_version
       else
-        is_api_call?[1].to_i if is_api_call?
+        api_version if is_api_call?
       end
     end
 
+    def api_version
+      version_matcher[1].to_i
+    end
+
     def is_api_call?
-      @is_api_call = accept ? accept.match(regex) : false
+      accept && version_matcher.present?
+    end
+
+    def version_matcher
+      @version_matcher[accept] ||= accept.match(regex) if accept
     end
 
     def regex
