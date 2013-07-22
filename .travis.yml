@@ -1,17 +1,9 @@
 rvm:
-  - 1.8.7
-  - 1.9.2
   - 1.9.3
+  - 2.0.0
   - ruby-head
-  - ree
-  - jruby
-  # Uncomment when I'll be able to bundle install properly locally
-  #- rbx
-  #- rbx-2.0
+  - jrub-19mode
 
-notifications:
-  campfire:
-    on_success: always
-    on_failure: always
-    rooms:
-      - secure: aGfydtzTb2+T6s0Out1n9nSZQH2jL8hFHZWXBa3sjqYW+2O8JAlM/Fri8jwV\nzrVKU3pEzbQx4oiuMxfYIRmSqZ6zQ1Kpqb1jDYa0sbbGUN7UskFEZirXp+GB\n7WBxvxn3b1T2tNvtlN7Yfxi4N54Qh2ymT8y0Uzoy6dZbtX8aTIU=
+matrix:
+  allow_failures:
+    - rvm: ruby-head
