@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "bundler"
   s.add_development_dependency "minitest"
 
-  s.add_dependency 'rake',  '>= 0.8.7'
-  s.add_dependency 'rails', '>= 3.0.0'
+  s.add_dependency 'rake',                '>= 0.8.7'
+  s.add_dependency 'actionpack',          '>= 3.0.0'
+  s.add_development_dependency 'railties','>= 3.0.0'
 end

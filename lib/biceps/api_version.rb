@@ -12,7 +12,6 @@ module Biceps
       valid_api_version?
     end
 
-
     private
     def valid_api_version?
       version.include?(request_version)
