@@ -6,8 +6,8 @@ require 'biceps/version'
 Gem::Specification.new do |s|
   s.name         = "biceps"
   s.version      = Biceps::VERSION
-  s.authors      = ["Evome"]
-  s.email        = "dev@evome.fr"
+  s.authors      = ["Damien MATHIEU", "Franck VERROT"]
+  s.email        = "42@dmathieu.com"
   s.homepage     = "https://github.com/lyonrb/biceps"
   s.summary     = "Leverage your api"
   s.description = "Create a versioned API with rails"
