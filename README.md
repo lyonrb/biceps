@@ -1,6 +1,6 @@
 # Biceps
 
-Easily route your rails-based versioned API
+Easily route your versioned API
 [![Travis](https://secure.travis-ci.org/lyonrb/biceps.png)](http://travis-ci.org/lyonrb/biceps)
 
 ## Installation
@@ -10,7 +10,9 @@ To install it, you just need to add it to your Gemfile.
 
     gem 'biceps'
 
-## Defining routes
+## Rails
+
+### Defining routes
 
 Once Biceps is installed, you can start adding api-versioned routes.
 Your `config/routes.rb` file could look like the following :
@@ -37,6 +39,39 @@ This will create two routes :
 As you can see in the routing, both are leading to different namespaces
 : v1 and v2.  
 Both namespaces are the version of your API.
+
+
+### Routes Testing
+
+You will want to be able to add routing tests to your versionned API. We provide an helper for that.  
+Include `Biceps::TestHelper` in your routing specs, and use the `mock_api_version` method.
+
+Example :
+
+    require 'spec_helper'
+
+    describe V1::MyApiController do
+      include Biceps::TestHelper
+      mock_api_version(1)
+
+      it "GET index" do
+        get('/my_api').should route_to({:controller => 'v1/my_api', :action => 'index'})
+      end
+    end
+
+#### Protip
+You can include this helper in all your routing specs by editing your `spec/spec_helper.rb` file with the following :
+
+    RSpec.configure do |config|
+      config.include Biceps::TestHelper,    :type => :routing
+    end
+
+## Rack-based apps
+
+Internally, biceps is just a rack middleware, which means you can use it with the ruby framework of your choice, including bare rack apps.  
+We will add a rack env parameter called `biceps.versions`, which is an array of strings containing all versions specified in the Accept HTTP header.
+
+You can then manage your routing as you wish inside your application.
 
 ## Calling the API
 
@@ -75,31 +110,6 @@ $.ajax({
   json = JSON.parse(response.responseText)
 });
 ```
-
-## Routes Testing
-
-You will want to be able to add routing tests to your versionned API. We provide an helper for that.  
-Include `Biceps::TestHelper` in your routing specs, and use the `mock_api_version` method.
-
-Example :
-
-    require 'spec_helper'
-
-    describe V1::MyApiController do
-      include Biceps::TestHelper
-      mock_api_version(1)
-
-      it "GET index" do
-        get('/my_api').should route_to({:controller => 'v1/my_api', :action => 'index'})
-      end
-    end
-
-### Protip
-You can include this helper in all your routing specs by editing your `spec/spec_helper.rb` file with the following :
-
-    RSpec.configure do |config|
-      config.include Biceps::TestHelper,    :type => :routing
-    end
 
 ## Contributing
 
