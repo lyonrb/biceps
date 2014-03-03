@@ -78,10 +78,7 @@ You can then manage your routing as you wish inside your application.
 When you want to call the API, you need to specify the Accept header
 like this :
 
-    application/json,application/vnd.my_app;ver=1
-
-When my_app is your application's name (based on the module name at
-`MyApp::Application`).
+    application/json,application/vnd.biceps;ver=1
 
 Here is, for example, how you could do it with [faraday](https://github.com/technoweenie/faraday)
 
@@ -89,7 +86,7 @@ Here is, for example, how you could do it with [faraday](https://github.com/tech
 connexion = Faraday.new(:url => 'http://api.yourapplication')
 connexion.get do |req|
   req.url '/me'
-  req.headers['ACCEPT'] = 'application/json, application/vnd.my_app;ver=1'
+  req.headers['ACCEPT'] = 'application/json, application/vnd.biceps;ver=1'
   req.params['access_token'] = 'xxx'
 end
 ```
@@ -99,17 +96,23 @@ Or, with jQuery, we do it like this :
 ```javascript
 $.ajaxSetup({
   accepts: {
-    my_app: "application/json,application/vnd.my_app;ver=1"
+    biceps: "application/json,application/vnd.biceps;ver=1"
   }
 });
 
 $.ajax({
   url: '/me'
-  dataType: 'my_app'
+  dataType: 'biceps'
 }).always(function(response) {
   json = JSON.parse(response.responseText)
 });
 ```
+
+## Changing the app's name
+
+You can change the app's name used to detect the Accept token easily.
+
+    Biceps.app_name = 'example'
 
 ## Contributing
 

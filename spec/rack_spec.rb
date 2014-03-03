@@ -39,4 +39,18 @@ describe Biceps::Rack do
       assert ['[]'] == response, "expected empty versions. Got #{response}"
     end
   end
+
+  describe "with an other application name" do
+    let(:env) { {'HTTP_ACCEPT' => 'application/json, application/vnd.example;ver=1'} }
+
+    after do
+      Biceps.app_name = nil
+    end
+
+    it "should work" do
+      Biceps.app_name = 'example'
+      response = subject.call(env).last
+      assert ['["1"]'] == response, "expected one version. Got #{response}"
+    end
+  end
 end

@@ -25,7 +25,7 @@ module Biceps
     end
 
     def app_name
-      "biceps"
+      ::Biceps.app_name
     end
   end
 end
