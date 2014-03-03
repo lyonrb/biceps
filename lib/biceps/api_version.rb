@@ -7,11 +7,20 @@ module Biceps
     end
 
     def matches?(request)
-      request_versions = request.env['biceps.versions']
-      return true if versions.empty? && request_versions.empty?
+      vrequest = request_versions(request)
+      return true if versions.empty? && vrequest.empty?
 
       versions.any? do |version|
-        request_versions.include?(version.to_s)
+        vrequest.include?(version.to_s)
+      end
+    end
+
+    private
+    def request_versions(request)
+      if Biceps.force_test_version?
+        Biceps.force_test_version.map(&:to_s)
+      else
+        request.env['biceps.versions']
       end
     end
   end
