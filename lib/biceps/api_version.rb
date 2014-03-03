@@ -17,11 +17,7 @@ module Biceps
 
     private
     def request_versions(request)
-      if Biceps.force_test_version?
-        Biceps.force_test_version.map(&:to_s)
-      else
-        request.env['biceps.versions']
-      end
+      request.env['biceps.versions']
     end
   end
 end

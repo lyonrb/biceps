@@ -7,7 +7,13 @@ module Biceps
     end
 
     def call(env)
-      env['biceps.versions'] = Array(api_versions(env['HTTP_ACCEPT']))
+      if Biceps.force_test_version?
+        versions = Biceps.force_test_version.map(&:to_s)
+      else
+        versions = Array(api_versions(env['HTTP_ACCEPT']))
+      end
+
+      env['biceps.versions'] = versions
       @app.call(env)
     end
 
