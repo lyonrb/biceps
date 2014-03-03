@@ -6,87 +6,63 @@ ACTR = ActionController::TestRequest
 describe Biceps::ApiVersion do
   let(:object) { Biceps::ApiVersion }
 
-  describe "without any appropriate Accept header" do
-    let(:request) { ACTR.new({'HTTP_ACCEPT' => 'text/javascript'}) }
+  describe "with one version" do
+    let(:request) { ACTR.new({'biceps.versions' => ['1']}) }
 
-    it "should never match" do
-      refute object.new(1).matches?(request)
+    it "should match" do
+      assert object.new([1]).matches?(request)
+      assert object.new(['beta', 1]).matches?(request)
     end
 
-    it "should not match with an array" do
-      refute object.new([2, 3]).matches?(request)
-    end
-
-    it "should match if the version nil is specified" do
-      assert object.new([1, nil]).matches?(request)
+    it "should not match" do
+      refute object.new([]).matches?(request)
+      refute object.new([2]).matches?(request)
     end
   end
 
-  describe "with an appropriate Accept header" do
-    let(:request) { ACTR.new({'HTTP_ACCEPT' => 'application/json, application/vnd.biceps;ver=1'}) }
+  describe "with multiple versions" do
+    let(:request) { ACTR.new({'biceps.versions' => ['1', '2']}) }
 
-    it "should match v1" do
-      assert object.new(1).matches?(request)
+    it "should match" do
+      assert object.new([1]).matches?(request)
+      assert object.new(['beta', 1]).matches?(request)
     end
 
-    it "should not match v2" do
-      refute object.new(2).matches?(request)
-    end
-
-    it "should match an array of 1, 2" do
-      assert object.new([1, 2]).matches?(request)
-    end
-
-    it "should not match an array of 2, 3" do
-      refute object.new([2, 3]).matches?(request)
+    it "should not match" do
+      refute object.new([]).matches?(request)
+      refute object.new([3]).matches?(request)
     end
   end
 
-  describe "with an inappropriate application name" do
-    # Even Chuck Norris can't access the api if the application name is inappropriate
-    let(:request) { ACTR.new('HTTP_ACCEPT' => 'application/json, application/vnd.chucknorris;ver=1') }
+  describe "with no versions" do
+    let(:request) { ACTR.new({'biceps.versions' => []}) }
 
-    it "should never match" do
-      refute object.new(1).matches?(request)
+    it "should match" do
+      assert object.new([]).matches?(request)
+    end
+
+    it "should not match" do
+      refute object.new([2]).matches?(request)
     end
   end
 
-  describe "without any application name" do
-    let(:request) { ACTR.new }
+  describe "with a forced test version" do
+    let(:request) { ACTR.new() }
 
-    it "should never match" do
-      refute object.new(1).matches?(request)
+    before do
+      Biceps.force_test_version = [1]
     end
 
-    it "should match nil" do
-      assert object.new(nil).matches?(request)
-    end
-  end
-
-  describe "with the test helper" do
-    let(:request) { ACTR.new({'HTTP_ACCEPT' => 'application/json, application/vnd.biceps;ver=1'}) }
-    include Biceps::TestHelper
-
-    describe "with an api version specified" do
-      mock_api_version(42)
-
-      it "should use the overriden api version" do
-        assert object.new(42).matches?(request)
-      end
-
-      it "should not match the original version" do
-        refute object.new(1).matches?(request)
-      end
+    after do
+      Biceps.clean_test_version
     end
 
-    describe "without any api version specified" do
-      it "should not use any overriden api version" do
-        refute object.new(42).matches?(request)
-      end
+    it "should match" do
+      assert object.new([1]).matches?(request)
+    end
 
-      it "should match the original version" do
-        assert object.new(1).matches?(request)
-      end
+    it "should not match" do
+      refute object.new([2]).matches?(request)
     end
   end
 end

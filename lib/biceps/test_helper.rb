@@ -24,7 +24,7 @@ module Biceps
       base.class_eval do
         def self.mock_api_version(version)
           before do
-            ::Biceps.force_test_version = version
+            ::Biceps.force_test_version = Array(version)
           end
 
           after do
