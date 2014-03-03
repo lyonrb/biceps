@@ -55,6 +55,7 @@ class Biceps::IntegrationTest < ActionDispatch::IntegrationTest
   end
 
   test "routing" do
+
     get '/test'
     assert_equal 'test', @response.body
 

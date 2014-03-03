@@ -18,10 +18,8 @@ module ActionDispatch::Routing
           scope_module = nil
         end
 
-        scope :module => scope_module do
-          constraints Biceps::ApiVersion.new(version) do
-            yield if block_given?
-          end
+        scope module: scope_module, constraints: Biceps::ApiVersion.new(version) do
+          yield if block_given?
         end
       end
     end
