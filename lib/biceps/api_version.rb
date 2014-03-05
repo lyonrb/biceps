@@ -17,7 +17,7 @@ module Biceps
 
     private
     def request_versions(request)
-      request.env['biceps.versions']
+      request.env['biceps.versions'] || []
     end
   end
 end

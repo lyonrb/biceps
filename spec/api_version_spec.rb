@@ -45,4 +45,16 @@ describe Biceps::ApiVersion do
       refute object.new([2]).matches?(request)
     end
   end
+
+  describe "without biceps.versions" do
+    let(:request) { ACTR.new({}) }
+
+    it "should match" do
+      assert object.new([]).matches?(request)
+    end
+
+    it "should not match" do
+      refute object.new([2]).matches?(request)
+    end
+  end
 end
