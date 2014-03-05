@@ -14,7 +14,7 @@ module Biceps
 
     private
     def api_versions(accept)
-      versions_matcher(accept).flatten
+      versions_matcher(accept).flatten if accept
     end
 
     def versions_matcher(accept)

@@ -53,4 +53,14 @@ describe Biceps::Rack do
       assert ['["1"]'] == response, "expected one version. Got #{response}"
     end
   end
+
+  describe "without any HTTP_ACCEPT" do
+    let(:env) { {} }
+
+    it "should not provide any version" do
+      response = subject.call(env).last
+      assert ['[]'] == response, "expected empty versions. Got #{response}"
+    end
+
+  end
 end
