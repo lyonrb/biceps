@@ -57,4 +57,24 @@ describe Biceps::ApiVersion do
       refute object.new([2]).matches?(request)
     end
   end
+
+  describe "with a forced test version" do
+    let(:request) { ACTR.new({'biceps.versions' => ['2']}) }
+
+    before do
+      Biceps.force_test_version = [1]
+    end
+
+    after do
+      Biceps.clean_test_version
+    end
+
+    it "should match" do
+      assert object.new([1]).matches?(request)
+    end
+
+    it "should not match" do
+      assert object.new([1]).matches?(request)
+    end
+  end
 end

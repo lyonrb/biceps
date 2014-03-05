@@ -53,21 +53,4 @@ describe Biceps::Rack do
       assert ['["1"]'] == response, "expected one version. Got #{response}"
     end
   end
-
-  describe "with a forced test version" do
-    let(:env) { {} }
-
-    before do
-      Biceps.force_test_version = [1]
-    end
-
-    after do
-      Biceps.clean_test_version
-    end
-
-    it "should provide the version" do
-      response = subject.call(env).last
-      assert ['["1"]'] == response, "expected one version. Got #{response}"
-    end
-  end
 end
